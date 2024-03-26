@@ -179,6 +179,8 @@ export default (element) => {
   }
 
   return {
+    isDragging,
+    isTouching,
     onTouch,
     onLongTouch,
     onDoubleTap,

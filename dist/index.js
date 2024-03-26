@@ -196,6 +196,8 @@ var index = (function (element) {
     }
   };
   return {
+    isDragging: isDragging,
+    isTouching: isTouching,
     onTouch: onTouch,
     onLongTouch: onLongTouch,
     onDoubleTap: onDoubleTap,
