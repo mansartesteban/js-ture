@@ -16,8 +16,6 @@ const doubleTapTimer = 300
 
 export default (element) => {
 
-  let dom = null
-
   let callbacks = {
     onTap: [],
     onTouch: [],
@@ -34,8 +32,7 @@ export default (element) => {
   let isDragging = false
   let isTouching = false
 
-  dom = unref(element)
-  if (!(dom instanceof HTMLElement)) {
+  if (!(element instanceof HTMLElement)) {
     throw "Unable to apply useTouch() composable on a non-dom element"
   }
 
@@ -44,7 +41,7 @@ export default (element) => {
   const setup = () => {
 
     // When screen is touched
-    dom.ontouchstart = (e) => {
+    element.ontouchstart = (e) => {
 
       // Always trigger touch event
       trigger(callbacks.onTouch, e)
@@ -71,7 +68,7 @@ export default (element) => {
     }
 
     // When user move his digit
-    dom.ontouchmove = (e) => {
+    element.ontouchmove = (e) => {
 
       // If drag mode is enable trigger the drag event
       if (isDragging) {
@@ -85,7 +82,7 @@ export default (element) => {
     }
 
     // When the user release his digit
-    dom.ontouchend = (e) => {
+    element.ontouchend = (e) => {
 
       // If drag mode is enable, triggers the dragEnd event
       if (isDragging) {
