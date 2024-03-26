@@ -36,72 +36,68 @@ export default (element) => {
     throw "Unable to apply useTouch() composable on a non-dom element"
   }
 
-  setup()
 
-  const setup = () => {
+  // When screen is touched
+  element.ontouchstart = (e) => {
 
-    // When screen is touched
-    element.ontouchstart = (e) => {
+    // Always trigger touch event
+    trigger(callbacks.onTouch, e)
 
-      // Always trigger touch event
-      trigger(callbacks.onTouch, e)
+    isTouching = true
 
-      isTouching = true
-
-      // If the screen has already been touched, triggers the doubleTap event
-      if (touchReleaseTrigger) {
-        trigger(callbacks.onDoubleTap, e)
-        touchReleaseTrigger = null
-      }
-
-      // Prepares a function to be called when {longTouchTimer}ms has passed to trigger longTouch and dragStart events 
-      longTouchTrigger = setTimeout(() => {
-
-        trigger(callbacks.onLongTouch, e)
-        trigger(callbacks.onDragStart, e)
-
-        // Enabling drag mode
-        isDragging = true
-
-      }, longTouchTimer)
-
+    // If the screen has already been touched, triggers the doubleTap event
+    if (touchReleaseTrigger) {
+      trigger(callbacks.onDoubleTap, e)
+      touchReleaseTrigger = null
     }
 
-    // When user move his digit
-    element.ontouchmove = (e) => {
+    // Prepares a function to be called when {longTouchTimer}ms has passed to trigger longTouch and dragStart events 
+    longTouchTrigger = setTimeout(() => {
 
-      // If drag mode is enable trigger the drag event
-      if (isDragging) {
-        trigger(callbacks.onDrag, e)
-      }
+      trigger(callbacks.onLongTouch, e)
+      trigger(callbacks.onDragStart, e)
 
-      // Resets the touching state and clear the longTouch trigger so the touch and longTouch events are not triggered
-      isTouching = false
-      clearTimeout(longTouchTrigger)
+      // Enabling drag mode
+      isDragging = true
 
+    }, longTouchTimer)
+
+  }
+
+  // When user move his digit
+  element.ontouchmove = (e) => {
+
+    // If drag mode is enable trigger the drag event
+    if (isDragging) {
+      trigger(callbacks.onDrag, e)
     }
 
-    // When the user release his digit
-    element.ontouchend = (e) => {
+    // Resets the touching state and clear the longTouch trigger so the touch and longTouch events are not triggered
+    isTouching = false
+    clearTimeout(longTouchTrigger)
 
-      // If drag mode is enable, triggers the dragEnd event
-      if (isDragging) {
-        trigger(callbacks.onDragEnd, e)
-      }
+  }
 
-      // If the drag mode has not been triggered and the digit is still touching, triggers the tap event
-      if (!isDragging && isTouching) {
-        trigger(callbacks.onTap, e)
+  // When the user release his digit
+  element.ontouchend = (e) => {
 
-        // Prepares a trigger which clears himself within a delay of {doubleTapTimer}ms, if a second touch is made within this delay, triggers the doubleTap event
-        touchReleaseTrigger = setTimeout(() => touchReleaseTrigger = null, doubleTapTimer)
-      }
-
-      // Resets the helper variables on release
-      isTouching = false
-      isDragging = false
-      clearTimeout(longTouchTrigger)
+    // If drag mode is enable, triggers the dragEnd event
+    if (isDragging) {
+      trigger(callbacks.onDragEnd, e)
     }
+
+    // If the drag mode has not been triggered and the digit is still touching, triggers the tap event
+    if (!isDragging && isTouching) {
+      trigger(callbacks.onTap, e)
+
+      // Prepares a trigger which clears himself within a delay of {doubleTapTimer}ms, if a second touch is made within this delay, triggers the doubleTap event
+      touchReleaseTrigger = setTimeout(() => touchReleaseTrigger = null, doubleTapTimer)
+    }
+
+    // Resets the helper variables on release
+    isTouching = false
+    isDragging = false
+    clearTimeout(longTouchTrigger)
   }
 
   /**
