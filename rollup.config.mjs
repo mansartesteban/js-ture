@@ -13,18 +13,18 @@ export default [
       },
       {
         file: './dist/index.min.js',
-        format: 'iife',
+        format: 'cjs',
         plugins: [terser()]
+      },
+      {
+        file: './dist/index.mjs',
+        format: 'es',
       },
       {
         file: './dist/index.min.mjs',
         format: 'es',
         plugins: [terser()]
       },
-      {
-        file: './dist/index.mjs',
-        format: 'es',
-      }
     ],
     plugins: [
       resolve(),

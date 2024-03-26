@@ -16,7 +16,6 @@ var doubleTapTimer = 300;
  */
 
 var index = (function (element) {
-  var dom = null;
   var callbacks = {
     onTap: [],
     onTouch: [],
@@ -30,14 +29,13 @@ var index = (function (element) {
   var touchReleaseTrigger = null;
   var isDragging = false;
   var isTouching = false;
-  dom = unref(element);
-  if (!(dom instanceof HTMLElement)) {
+  if (!(element instanceof HTMLElement)) {
     throw "Unable to apply useTouch() composable on a non-dom element";
   }
   setup();
   var setup = function setup() {
     // When screen is touched
-    dom.ontouchstart = function (e) {
+    element.ontouchstart = function (e) {
       // Always trigger touch event
       trigger(callbacks.onTouch, e);
       isTouching = true;
@@ -59,7 +57,7 @@ var index = (function (element) {
     };
 
     // When user move his digit
-    dom.ontouchmove = function (e) {
+    element.ontouchmove = function (e) {
       // If drag mode is enable trigger the drag event
       if (isDragging) {
         trigger(callbacks.onDrag, e);
@@ -71,7 +69,7 @@ var index = (function (element) {
     };
 
     // When the user release his digit
-    dom.ontouchend = function (e) {
+    element.ontouchend = function (e) {
       // If drag mode is enable, triggers the dragEnd event
       if (isDragging) {
         trigger(callbacks.onDragEnd, e);
