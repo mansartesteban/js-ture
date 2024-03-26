@@ -1,0 +1,26 @@
+{
+  "name": "js-ture",
+  "version": "0.1.0",
+  "description": "Javascript library to easily handle mobile gestures",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs",
+    "test": "node test/spec",
+    "pretest": "npm run build"
+  },
+  "keywords": [],
+  "author": "Esteban MANSART",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "rollup": "^4.13.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  },
+  "files": [
+    "dist",
+    "src"
+  ]
+}

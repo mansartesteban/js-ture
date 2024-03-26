@@ -1,6 +1,6 @@
 # JSture
-Javascript library to easily handle mobile gestures
 
+Javascript library to easily handle mobile gestures
 
 ## Existing
 
@@ -22,3 +22,5 @@ Javascript library to easily handle mobile gestures
   - onSwipeRight + inertia + fingerCount as option
   - onPinch (zoom) + inertia
   - onStretch (unzoom) + inertia
+- Add the mouse supports on same event than touch ones (could be activated or not)
+  
