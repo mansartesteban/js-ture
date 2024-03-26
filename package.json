@@ -9,8 +9,7 @@
   "module": "./dist/index.mjs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vitejs/vite.git",
-    "directory": "packages/vite"
+    "url": "git+https://github.com/mansartesteban/js-ture.git"
   },
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
