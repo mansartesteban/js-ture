@@ -2,7 +2,7 @@
   "name": "js-ture",
   "version": "0.1.0",
   "description": "Javascript library to easily handle mobile gestures",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
     "test": "node test/spec",
@@ -14,6 +14,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.3",
     "@babel/preset-env": "^7.24.3",
+    "@rollup/plugin-terser": "^0.4.4",
     "rollup": "^4.13.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
