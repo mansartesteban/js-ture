@@ -34,14 +34,12 @@ export default (element) => {
   let isDragging = false
   let isTouching = false
 
-  onMounted(() => {
-    dom = unref(element)
-    if (!(dom instanceof HTMLElement)) {
-      throw "Unable to apply useTouch() composable on a non-dom element"
-    }
+  dom = unref(element)
+  if (!(dom instanceof HTMLElement)) {
+    throw "Unable to apply useTouch() composable on a non-dom element"
+  }
 
-    setup()
-  })
+  setup()
 
   const setup = () => {
 
