@@ -14,8 +14,16 @@ export default [
       {
         file: './dist/index.min.js',
         format: 'iife',
-        name: 'version',
         plugins: [terser()]
+      },
+      {
+        file: './dist/index.min.mjs',
+        format: 'es',
+        plugins: [terser()]
+      },
+      {
+        file: './dist/index.mjs',
+        format: 'es',
       }
     ],
     plugins: [
