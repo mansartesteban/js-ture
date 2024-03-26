@@ -1,6 +1,6 @@
 {
   "name": "js-ture",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Javascript library to easily handle mobile gestures",
   "main": "./dist/index.js",
   "scripts": {
